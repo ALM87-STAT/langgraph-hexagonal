@@ -1,0 +1,19 @@
+# LLM App Project Configuration
+
+# Model Configuration
+models:
+  application_1:
+    parameters:
+      model_provider: "google_vertexai"
+      model: "gemini-2.0-flash"      
+      temperature: 0
+      max_tokens: 2048
+      top_p: 1.0
+
+  application_2:
+    parameters:
+      model_provider: "openai"
+      model: "gpt-4o-mini-2024-07-18"
+      temperature: 0
+      max_tokens: 2048
+      top_p: 1.0

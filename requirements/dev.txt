@@ -1,0 +1,14 @@
+# Python dependencies for the project
+# Python version: 3.11 or higher
+
+opik==1.6.2
+langgraph==0.2.60
+langsmith==0.1.147
+langchain==0.3.21
+langchain-google-vertexai==2.0.14
+langchain-openai==0.3.7
+langgraph-cli[inmem]==0.1.65
+langchain-mcp-adapters==0.0.3
+langchain-community==0.3.20
+fastapi[standar]==0.115.11
+mcp==1.6.0
