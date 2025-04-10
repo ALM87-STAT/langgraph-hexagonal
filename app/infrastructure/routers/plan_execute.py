@@ -4,12 +4,17 @@ from starlette.responses import JSONResponse
 from application.dto.plan_excecute_dto import PlanExcecuteDto
 from application.use_cases.plan_execute_use_case import PlanExecuteUseCase
 from infrastructure.controllers.plan_execute_controller import PlanExecuteController
+from infrastructure.controllers.llm_reflection_controller import LLMReflectionController
+from langchain import LLMChain
 
 plan_execute_router = APIRouter()
 
 health_use_case = PlanExecuteUseCase()
 controller = PlanExecuteController(health_use_case)
 
+# Initialize LLMChain (this should be configured properly)
+llm_chain = LLMChain()  # Placeholder for actual LLMChain initialization
+reflection_controller = LLMReflectionController(llm_chain)
 
 @plan_execute_router.post("/plan-execute")
 async def plan_execute(data: PlanExcecuteDto) -> JSONResponse:
@@ -22,5 +27,7 @@ async def plan_execute(data: PlanExcecuteDto) -> JSONResponse:
     Returns:
         JSONResponse: Response containing the result of the workflow.
     """
-    response = controller.plan_execute(data)
-    return response
+    # Use reflection controller to process the user input
+    user_input = data.input  # Assuming PlanExcecuteDto has an 'input' attribute
+    response = reflection_controller.reflect_and_correct(user_input)
+    return JSONResponse(content={'response': response})
